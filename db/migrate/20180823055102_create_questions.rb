@@ -4,7 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.string :subject
       t.string :content
       t.integer :state
-      t.references :user
+      t.belongs_to :user, index: true
 
       t.timestamps
     end
