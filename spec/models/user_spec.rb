@@ -47,8 +47,8 @@ RSpec.describe User, type: :model do
     end
 
     context 'emailが重複したとき' do
-      before { create :user , { email: "TEST@example.com" }}
       let(:attributes) { { email: "TEST@example.com" } }
+      before { create :user , { email: "TEST@example.com" }}
 
       it { is_expected.to be_invalid }
     end

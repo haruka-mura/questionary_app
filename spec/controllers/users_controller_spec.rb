@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  # describe '#index' do
-  #   subject { get :index }
-  #
-  #   it { is_expected.to have_http_status(:ok) }
-  # end
-
   describe '#new' do
     subject { get :new }
 
