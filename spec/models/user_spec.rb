@@ -59,8 +59,6 @@ RSpec.describe User, type: :model do
       it { is_expected.to be_invalid }
     end
 
-    # "TEST@@example.com.com"の時のテスト
-
     context 'passwordが6文字のとき' do
       let(:attributes) { { password: "a" * 6, password_confirmation: "a" * 6 } }
 
