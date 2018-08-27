@@ -24,10 +24,7 @@ RSpec.describe SessionsHelper, type: :helper do
 
     let(:user) { create :user }
 
-    before do
-      helper.log_in(user)
-      helper.current_user
-    end
+    before { helper.log_in(user) }
 
     it { is_expected.to eq user }
   end
