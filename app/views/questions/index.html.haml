@@ -1,0 +1,22 @@
+%h1 Listing questions
+
+%table
+  %thead
+    %tr
+      %th Subject
+      %th Content
+      %th State
+      %th
+      %th
+
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td= question.subject
+        %td= question.content
+        %td= question.state
+        %td= link_to 'Show', question
+        %td= link_to 'Edit', edit_question_path(question)
+%br
+
+= link_to 'New question', new_question_path
