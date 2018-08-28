@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p
+  %b Subject:
+  = @question.subject
+%p
+  %b Content:
+  = @question.content
+%p
+  %b State:
+  = @question.state
+
+= link_to 'Back', questions_path
