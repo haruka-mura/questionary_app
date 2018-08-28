@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :set_question, only: [:show, :edit, :update]
+
   def index
     @questions = Question.all
   end
@@ -15,8 +17,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-binding.pry
-    if @question.save(@question, user: current_user.id)
+    @question.user = current_user
+
+    if @question.save
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
@@ -28,7 +31,7 @@ binding.pry
 
   private
     def set_question
-      @question = question.find(params[:id])
+      @question = Question.find(params[:id])
     end
 
     def question_params

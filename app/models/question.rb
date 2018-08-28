@@ -1,16 +1,10 @@
 class Question < ApplicationRecord
+  validates :subject, presence: true, length: { maximum: 200 }
+  validates :content, presence: true
+
   belongs_to :user
   has_many :question_tags
   has_many :tags, through: :question_tags
 
-  attr_accessor :user, :question
-
   enum state: { accepting: 0, replied: 1 }
-
-  def save(question, user)
-    binding.pry
-    question.user_id = user[:user]
-    question.save
-    binding.pry
-  end
 end
