@@ -45,7 +45,7 @@ RSpec.describe QuestionsController, type: :controller do
         before { session[:user_id] = user.id }
 
         it do
-          expect{subject}.to change { Question.count }.by(1)
+          expect { subject }.to change { Question.count }.by(1)
           is_expected.to redirect_to Question.last
         end
       end
@@ -56,7 +56,7 @@ RSpec.describe QuestionsController, type: :controller do
         before { session[:user_id] = user.id }
 
         it do
-          expect{subject}.not_to change { Question.count }
+          expect { subject }.not_to change { Question.count }
           is_expected.to render_template :new
         end
       end

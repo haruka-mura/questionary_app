@@ -10,4 +10,10 @@
   %b State:
   = @question.state
 
+- @answers.each do |answer|
+  %p
+    %span= answer.id
+    %span= answer.comment
+
+= link_to '回答する', new_question_answer_path(@question)
 = link_to 'Back', questions_path
