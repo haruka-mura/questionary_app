@@ -17,7 +17,6 @@
         %td= question.state
         %td= link_to 'Show', question
         - if question.user == current_user
-        - binding.pry
           %td= link_to 'Edit', edit_question_path(question)
 %br
 
