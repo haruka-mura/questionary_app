@@ -68,4 +68,47 @@ RSpec.describe QuestionsController, type: :controller do
       it { is_expected.to render_template :new }
     end
   end
+
+  describe '#edit' do
+    subject { get :edit, params: { id: question_id } }
+
+    let(:question) { create :question }
+
+    context 'パラメータが有効な時' do
+      let(:question_id) { question.id }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context 'パラメータが無効な時' do
+      let(:question_id) { 'aaa' }
+
+      it { expect { subject }.to raise_error ActiveRecord::RecordNotFound }
+    end
+  end
+
+  describe '#update' do
+    subject { put :update, params: { id: question.id, question: question_params } }
+
+    let(:question) { create :question }
+    let(:question_params) { attributes_for :question, subject: new_subject }
+
+    context 'パラメータが有効な時' do
+      let(:new_subject) { "new subject" }
+
+      it do
+        expect { subject }.to change { question.reload.subject }.to(new_subject)
+        is_expected.to redirect_to question
+      end
+    end
+
+    context 'パラメータが無効な時' do
+      let(:new_subject) { "" }
+
+      it do
+        expect { subject }.to_not change { question.reload.subject }
+        is_expected.to render_template :edit
+      end
+    end
+  end
 end
