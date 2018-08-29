@@ -21,7 +21,7 @@ RSpec.describe Questions::AnswersController, type: :controller do
         let(:answer_params) { attributes_for :answer }
 
         it do
-          expect{subject}.to change { Answer.count }.by(1)
+          expect { subject }.to change { Answer.count }.by(1)
           is_expected.to have_http_status(302)
         end
       end
@@ -30,7 +30,7 @@ RSpec.describe Questions::AnswersController, type: :controller do
         let(:answer_params) { attributes_for :answer, comment: "" }
 
         it do
-          expect{subject}.not_to change { Answer.count }
+          expect { subject }.not_to change { Answer.count }
           is_expected.to render_template :new
         end
       end
