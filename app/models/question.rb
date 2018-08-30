@@ -7,8 +7,6 @@ class Question < ApplicationRecord
   has_many :question_tags
   has_many :tags, through: :question_tags
 
-  # attr_accessor :keyword
-
   enum state: { accepting: 0, replied: 1 }
 
   def self.keyword_search(keyword)

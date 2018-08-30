@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
 
 
   def index
-    # @questions = Question.all
     @questions = Question.keyword_search(keyword)
   end
 

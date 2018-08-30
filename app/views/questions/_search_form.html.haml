@@ -1,22 +1,3 @@
--# = form_with(url: questions_url, method: :get))  do |f|
--#   - if @search_form.errors.any?
--#     #error_explanation
--#       %h2= "#{pluralize(@search_form.errors.count, "error")} prohibited this task from being saved:"
--#       %ul
--#         - @search_form.errors.full_messages.each do |message|
--#           %li= message
--#
--#   .field
--#     = f.label :keyword
--#     = f.text_field :keyword
--#   .actions
--#     = f.submit 'Save'
-
--# %form{action: "/questions", method: :get}
--#   -# = label :keyword, "Keyword"
--#   = text_field :keyword, "keyword"
--#   %input{type: "submit", value: "search"}
-
 = form_tag("/questions", method: "get") do
   = label_tag(:keyword, "keyword")
   = text_field_tag(:keyword)
