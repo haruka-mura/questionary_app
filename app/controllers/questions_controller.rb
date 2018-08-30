@@ -3,8 +3,8 @@ class QuestionsController < ApplicationController
 
 
   def index
-    @questions = Question.all
-    @search_form = Question.search(keyword)
+    # @questions = Question.all
+    @questions = Question.keyword_search(keyword)
   end
 
   def new
@@ -46,7 +46,6 @@ class QuestionsController < ApplicationController
     end
 
     def keyword
-      binding.pry
       params[:keyword]
     end
 end
