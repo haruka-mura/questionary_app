@@ -1,8 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update]
 
+
   def index
     @questions = Question.all
+    @search_form = Question.search(keyword)
   end
 
   def new
@@ -41,5 +43,10 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:subject, :content, :state)
+    end
+
+    def keyword
+      binding.pry
+      params[:keyword]
     end
 end
