@@ -34,4 +34,30 @@ RSpec.describe Question, type: :model do
       it { is_expected.to be_invalid }
     end
   end
+
+  describe 'scope' do
+    describe 'search_with_keyword' do
+      subject { Question.search_with_keyword(keyword) }
+
+      let(:question) { create :question, subject: "subject" }
+
+      context 'キーワードが検索に引っかかる時' do
+        let(:keyword) { "subject" }
+
+        it { is_expected.to include question }
+      end
+
+      context 'キーワードが検索に引っかからない時' do
+        let(:keyword) { "object" }
+
+        it { is_expected.not_to include question }
+      end
+
+      context 'キーワードが "" の時' do
+        let(:keyword) { "" }
+
+        it { is_expected.to include question }
+      end
+    end
+  end
 end
