@@ -15,10 +15,6 @@ class Question < ApplicationRecord
     return questions if keyword.nil?
 
     scope = questions.where("subject like?", "%#{sanitize_sql_like(keyword)}%").or(questions.where("content like?", "%#{sanitize_sql_like(keyword)}%"))
-    if scope.nil?
-      questions
-    else
-      scope
-    end
+    scope
   end
 end

@@ -2,26 +2,28 @@
 
 = render 'search_form'
 
-%p #{@result}
-
-%table
-  %thead
-    %tr
-      %th Subject
-      %th Content
-      %th State
-      %th
-      %th
-
-  %tbody
-    - @questions.each do |question|
+- if @questions.empty?
+  %p= "--該当する質問がありません--"
+- else
+  %p= "--#{@questions.count}件が該当しました--"
+  %table
+    %thead
       %tr
-        %td= question.subject
-        %td= question.content
-        %td= question.state
-        %td= link_to 'Show', question
-        - if question.user == current_user
-          %td= link_to 'Edit', edit_question_path(question)
-%br
+        %th Subject
+        %th Content
+        %th State
+        %th
+        %th
+
+    %tbody
+      - @questions.each do |question|
+        %tr
+          %td= question.subject
+          %td= question.content
+          %td= question.state
+          %td= link_to 'Show', question
+          - if question.user == current_user
+            %td= link_to 'Edit', edit_question_path(question)
+  %br
 
 = link_to 'New question', new_question_path

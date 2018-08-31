@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.keyword_search(keyword)
+    @keyword = keyword
   end
 
   def new

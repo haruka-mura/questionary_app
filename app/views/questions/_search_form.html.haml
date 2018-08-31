@@ -1,4 +1,4 @@
 = form_tag("/questions", method: "get") do
   = label_tag(:keyword, "keyword")
-  = text_field_tag(:keyword)
+  = text_field_tag(:keyword, "#{@keyword}")
   = submit_tag("Search")
