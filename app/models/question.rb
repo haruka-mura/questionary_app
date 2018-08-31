@@ -11,5 +11,5 @@ class Question < ApplicationRecord
 
   scope :subject, -> (keyword) { where("subject like?", "%#{sanitize_sql_like(keyword)}%") }
   scope :content, -> (keyword) { where("content like?", "%#{sanitize_sql_like(keyword)}%") }
-  scope :condition, -> (keyword) { subject(keyword).or(content(keyword)) }
+  scope :search_with_keyword, -> (keyword) { subject(keyword).or(content(keyword)) }
 end
