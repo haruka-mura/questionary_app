@@ -9,12 +9,7 @@ class Question < ApplicationRecord
 
   enum state: { accepting: 0, replied: 1 }
 
-  def self.keyword_search(keyword)
-    questions = Question.all
-
-    return questions if keyword.nil?
-
-    scope = questions.where("subject like?", "%#{sanitize_sql_like(keyword)}%").or(questions.where("content like?", "%#{sanitize_sql_like(keyword)}%"))
-    scope
-  end
+  scope :subject, -> (keyword) { where("subject like?", "%#{sanitize_sql_like(keyword)}%") }
+  scope :content, -> (keyword) { where("content like?", "%#{sanitize_sql_like(keyword)}%") }
+  scope :condition, -> (keyword) { subject(keyword).or(content(keyword)) }
 end
