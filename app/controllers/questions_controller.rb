@@ -1,8 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update]
 
+
   def index
-    @questions = Question.all
+    @questions = question_search
+    @keyword = keyword_params
   end
 
   def new
@@ -41,5 +43,13 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:subject, :content, :state)
+    end
+
+    def keyword_params
+      params[:keyword]
+    end
+
+    def question_search
+      keyword_params.nil? ? Question.all : Question.search_with_keyword(keyword_params)
     end
 end

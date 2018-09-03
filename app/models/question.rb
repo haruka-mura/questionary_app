@@ -8,4 +8,7 @@ class Question < ApplicationRecord
   has_many :tags, through: :question_tags
 
   enum state: { accepting: 0, replied: 1 }
+
+  scope :search_with_keyword, -> (keyword) { where("subject like :keyword OR content like :keyword",
+                                  {keyword: "%#{sanitize_sql_like(keyword)}%"} ) }
 end
