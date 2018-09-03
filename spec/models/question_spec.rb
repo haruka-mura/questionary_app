@@ -39,10 +39,22 @@ RSpec.describe Question, type: :model do
     describe 'search_with_keyword' do
       subject { Question.search_with_keyword(keyword) }
 
-      let(:question) { create :question, subject: "subject" }
+      let(:question) { create :question, subject: "subject_test", content: "content_test" }
 
-      context 'キーワードが検索に引っかかる時' do
+      context 'subjectが検索に引っかかる時' do
         let(:keyword) { "subject" }
+
+        it { is_expected.to include question }
+      end
+
+      context 'contentが検索に引っかかる時' do
+        let(:keyword) { "content" }
+
+        it { is_expected.to include question }
+      end
+
+      context 'subject, content両方の文字が検索に引っかかる時' do
+        let(:keyword) { "content" }
 
         it { is_expected.to include question }
       end

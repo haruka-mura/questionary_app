@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = question_search
-    @keyword = keyword
+    @keyword = keyword_params
   end
 
   def new
@@ -45,11 +45,11 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:subject, :content, :state)
     end
 
-    def keyword
+    def keyword_params
       params[:keyword]
     end
 
     def question_search
-      keyword.nil? ? Question.all : Question.search_with_keyword(keyword)
+      keyword.nil? ? Question.all : Question.search_with_keyword(keyword_params)
     end
 end
