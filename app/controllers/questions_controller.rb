@@ -50,6 +50,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_search
-      keyword.nil? ? Question.all : Question.search_with_keyword(keyword_params)
+      keyword_params.nil? ? Question.all : Question.search_with_keyword(keyword_params)
     end
 end
