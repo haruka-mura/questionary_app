@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
 
   def index
-    @questions = keyword_search
+    @questions = question_search
     @keyword = keyword
   end
 
@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
       params[:keyword]
     end
 
-    def keyword_search
+    def question_search
       keyword.nil? ? Question.all : Question.search_with_keyword(keyword)
     end
 end
