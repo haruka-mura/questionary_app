@@ -11,7 +11,7 @@
       %tr
         %td= tag.name
         %td= link_to 'Show', question_tag_path(tag, question_id: @question)
-        %td= link_to 'Edit', edit_question_tag_path(tag, question_id: @question)
+        %td= link_to 'Edit', edit_path(tag, question_id: @question)
 %br
 
 = link_to 'New tag', new_question_tag_path

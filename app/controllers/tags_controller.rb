@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:show, :edit, :update]
-  before_action :set_question, only: [:index, :new, :edit, :update]
+  before_action :set_tag, only: :show
+  before_action :set_question, only: [:index, :new, :edit, :update, :create]
 
   # 後から消す
   def index
@@ -18,13 +18,15 @@ class TagsController < ApplicationController
 
   # タグが紐づいてたらedit
   def edit
+    @tags = @question.tags
   end
 
   def create
     @tag = Tag.new(tag_params)
+    @question.tags << @tag
 
-    if @tag.save
-      redirect_to question_tags_path, notice: 'Tag was successfully created.'
+    if @tags.save
+      redirect_to @question, notice: 'Tag was successfully created.'
     else
       render :new
     end

@@ -15,5 +15,11 @@
     %span= answer.id
     %span= answer.comment
 
+- @question.tags.each do |tag|
+  %p
+    %span= tag.name
+
+= link_to 'タグ追加', new_question_tag_path(@question)
+= link_to 'タグ編集', edit_path(question_id: @question)
 = link_to '回答する', new_question_answer_path(@question)
 = link_to 'Back', questions_path

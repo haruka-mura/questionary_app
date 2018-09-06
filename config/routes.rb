@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   get    'login', to: 'sessions#new'
   post   'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
+  get 'questions/:id/tags/edit', to: 'tags#edit', as: :edit
 
   resources :users, only: [:index, :new, :show, :create]
 
   resources :questions, except: :destroy do
     resources :answers, only: [:new, :create]
-    resources :tags
+    resources :tags, except: :edit
   end
 end
