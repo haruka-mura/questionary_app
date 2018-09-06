@@ -11,10 +11,7 @@ class TagForm
   end
 
   def show_tags
-    @tags = []
-    question.tags.each do |tag|
-      @tags << tag.name
-    end
+    @tags = question.tags.map(&:name)
     @tags = "#{@tags.join(" ")}"
   end
 end
