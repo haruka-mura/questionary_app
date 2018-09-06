@@ -1,13 +1,13 @@
-= form_for @tags, url: edit_path do |f|
-  - if @tags.errors.any?
+= form_for @tag_form, url: edit_path do |f|
+  - if @tag_form.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@tags.errors.count, "error")} prohibited this tags from being saved:"
+      %h2= "#{pluralize(@tag_form.errors.count, "error")} prohibited this tags from being saved:"
       %ul
-        - @tags.errors.full_messages.each do |message|
+        - @tag_form.errors.full_messages.each do |message|
           %li= message
 
   .field
     = f.label :name
-    = f.text_field :name, value: "#{@tags.show_tags}"
+    = f.text_field :name, value: "#{@tag_form.show_tags}"
   .actions
     = f.submit 'Save'

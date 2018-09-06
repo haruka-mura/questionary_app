@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: :show
-  before_action :set_question, only: [:index, :new, :edit, :update, :create]
+  before_action :set_question, only: [:index, :new, :edit, :create]
 
   # 後から消す
   def index
@@ -13,28 +13,31 @@ class TagsController < ApplicationController
 
   # タグが紐づいていなかったらnew
   def new
-    @tag = Tag.new
+    @tag_form = TagForm.new
   end
 
   # タグが紐づいてたらedit
   def edit
     @tags = @question.tags
+    @tag_form = TagForm.new(question: @question)
   end
 
   def create
-    @tag = Tag.new(tag_params)
-    @question.tags << @tag
+    @tag_form = TagForm.new(tag_params.merge(question: @question))
+    # @question.tags << @tag
 
-    if @tags.save
-      redirect_to @question, notice: 'Tag was successfully created.'
+    if @tag_form.save
+      redirect_to @tag_form.question, notice: 'Tag was successfully created.'
     else
       render :new
     end
   end
 
   def update
-    if @tag.update(tag_params)
-      redirect_to question_tags_path, notice: 'Question was successfully updated.'
+    @tag_form = TagForm.new(tag_params.merge(question: Question.find(params[:id])))
+
+    if @tag_form.update
+      redirect_to @tag_form.question, notice: 'Question was successfully updated.'
     else
       render :edit
     end
@@ -51,6 +54,6 @@ class TagsController < ApplicationController
     end
 
     def tag_params
-      params.require(:tag).permit(:name)
+      params.require(:tag_form).permit(:name)
     end
 end
