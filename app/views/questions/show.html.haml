@@ -13,13 +13,16 @@
 - @answers.each do |answer|
   %p
     %span= answer.id
+    %span= answer.user_id
     %span= answer.comment
 
-%p= "#{@tag_form.show_tags}"
+%span= "#{@tag_form.show_tags}"
+%span
+  - if @question.tags.exists?
+    = link_to 'タグを編集する', question_tags_edit_path
+  - else
+    = link_to 'タグを追加する', new_question_tag_path(@question)
 
-- if @question.tags.exists?
-  = link_to 'タグ編集', edit_path(question_id: @question)
-- else
-  = link_to 'タグ追加', new_question_tag_path(@question)
-= link_to '回答する', new_question_answer_path(@question)
-= link_to 'Back', questions_path
+%p
+  = link_to '回答する', new_question_answer_path(@question)
+  = link_to 'Back', questions_path
