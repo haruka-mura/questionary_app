@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: :show
-  before_action :set_question, only: [:index, :new, :edit, :create]
+  before_action :set_question, only: [:index, :new, :edit, :create, :show]
 
   # 後から消す
   def index
