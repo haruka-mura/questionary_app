@@ -8,7 +8,7 @@ class TagsController < ApplicationController
 
   def edit
     @tags = @question.tags
-    @tag_form = TagForm.new(question: @question))
+    @tag_form = TagForm.new(question: @question)
   end
 
   def create
@@ -22,7 +22,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tag_form = TagForm.new(tag_params.merge(question: @question)))
+    @tag_form = TagForm.new(tag_params.merge(question: @question))
 
     if @tag_form.save
       redirect_to @tag_form.question
