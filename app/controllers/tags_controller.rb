@@ -1,13 +1,14 @@
 class TagsController < ApplicationController
-  before_action :set_question, only: [:new, :create]
+  before_action :set_question_from_question_id, only: [:new, :create]
+  before_action :set_question_from_id, only: [:edit, :update]
 
   def new
     @tag_form = TagForm.new
   end
 
   def edit
-    @tags = Question.find(params[:id]).tags
-    @tag_form = TagForm.new(question: Question.find(params[:id]))
+    @tags = @question.tags
+    @tag_form = TagForm.new(question: @question))
   end
 
   def create
@@ -21,7 +22,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tag_form = TagForm.new(tag_params.merge(question: Question.find(params[:id])))
+    @tag_form = TagForm.new(tag_params.merge(question: @question)))
 
     if @tag_form.save
       redirect_to @tag_form.question
@@ -32,8 +33,12 @@ class TagsController < ApplicationController
 
   private
 
-    def set_question
+    def set_question_from_question_id
       @question = Question.find(params[:question_id])
+    end
+
+    def set_question_from_id
+      @question = Question.find(params[:id])
     end
 
     def tag_params
