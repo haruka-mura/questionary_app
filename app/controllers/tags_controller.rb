@@ -8,7 +8,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.find(10)
+    @tag = Tag.find_by(id: params[:id])
   end
 
 >>>>>>> Add show action and template

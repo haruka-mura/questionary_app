@@ -20,7 +20,9 @@
           %td= link_to question.subject, question
           %td= question.content
           %td= question.state
-          %td= question.show_tags
+          %td
+            - question.tags.each do |tag|
+              %span= link_to tag.name, tag
   %br
 
 = link_to 'New question', new_question_path
