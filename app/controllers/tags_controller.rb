@@ -2,23 +2,12 @@ class TagsController < ApplicationController
   before_action :set_question_from_question_id, only: [:new, :create]
   before_action :set_question_from_id, only: [:edit, :update]
 
-  def new
-    @tag_form = TagForm.new
+  def show
+    @tag = Tag.find_by(id: params[:id])
   end
 
   def edit
-    @tags = @question.tags
     @tag_form = TagForm.new(question: @question)
-  end
-
-  def create
-    @tag_form = TagForm.new(tag_params.merge(question: @question))
-
-    if @tag_form.save
-      redirect_to @tag_form.question
-    else
-      render :new
-    end
   end
 
   def update

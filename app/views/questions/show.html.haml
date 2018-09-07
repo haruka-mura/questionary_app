@@ -21,7 +21,7 @@
   - if @question.tags.exists?
     = link_to 'タグを編集する', question_tags_edit_path
   - else
-    = link_to 'タグを追加する', new_question_tag_path(@question)
+    = link_to 'タグを追加する', question_tags_edit_path
 
 %p
   = link_to '回答する', new_question_answer_path(@question)

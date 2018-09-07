@@ -29,7 +29,6 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe '#edit' do
-    # @tags = @question.tagsの検証はいる？
     subject { get :edit, params: { id: question_id } }
 
     let(:question) { create :question }
@@ -48,7 +47,6 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe '#update' do
-    # tagが1つ減ったり1つ追加された時に、検証したい
     subject { put :update, params: { tag_form: tag_params, id: question.id } }
     let(:question) { create :question }
     let(:tag) { create :tag }

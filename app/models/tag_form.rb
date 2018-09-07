@@ -3,15 +3,15 @@ class TagForm
   attr_accessor :name, :question
 
   def save
-    question.tags.clear
     tags = name.split(/\s|　/)
-    tags.each do |tag|
-      question.tags << Tag.find_or_create_by(name: tag)
+
+    new_tags = tags.map do |tag|
+      Tag.find_or_create_by(name: tag)
     end
+    question.tags = temp
   end
 
   def show_tags
-    @tags = question.tags.map(&:name)
-    @tags = "#{@tags.join(" ")}"
+    question.tags.map(&:name).join(" ")
   end
 end

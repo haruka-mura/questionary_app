@@ -9,7 +9,6 @@ RSpec.describe TagForm, type: :model do
 
     let(:tag_form) { TagForm.new(tag_params.merge(question: question)) }
 
-
     it { expect { subject }.to change { Tag.count }.by(3) }
   end
 
