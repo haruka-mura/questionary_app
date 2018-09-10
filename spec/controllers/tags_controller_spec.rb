@@ -24,7 +24,6 @@ RSpec.describe TagsController, type: :controller do
     subject { put :update, params: { tag_form: tag_params, id: question.id } }
 
     let(:question) { create :question }
-    let(:tag) { create :tag }
     let(:tag_params) { attributes_for :tag, name: new_tags }
 
     context 'tagが1つ減った時' do
@@ -46,10 +45,11 @@ RSpec.describe TagsController, type: :controller do
     end
 
     context 'tagが1つも入力されない時' do
+      before { create(:tag) }
       let(:new_tags) { "" }
 
       it do
-        expect { subject }.not_to change { Tag.count }
+        expect { subject }.to change { Tag.count }.from(3).to(0)
         is_expected.to redirect_to question
       end
     end
