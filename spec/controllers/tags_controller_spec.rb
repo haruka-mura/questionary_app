@@ -44,5 +44,14 @@ RSpec.describe TagsController, type: :controller do
         is_expected.to redirect_to question
       end
     end
+
+    context 'tagが1つも入力されない時' do
+      let(:new_tags) { "" }
+
+      it do
+        expect { subject }.not_to change { Tag.count }
+        is_expected.to redirect_to question
+      end
+    end
   end
 end
