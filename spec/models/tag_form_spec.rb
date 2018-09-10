@@ -9,7 +9,7 @@ RSpec.describe TagForm, type: :model do
 
     let(:tag_form) { TagForm.new(tag_params.merge(question: question)) }
 
-    it { expect { subject }.to change { Tag.count }.by(3) }
+    it { expect { subject }.to change { Tag.count }.by(1) }
   end
 
   describe '#show_tags' do
@@ -19,6 +19,6 @@ RSpec.describe TagForm, type: :model do
 
     let(:tag_form) { TagForm.new(question: question) }
 
-    it { is_expected.to eq "tag1 tag2 tag3" }
+    it { is_expected.to eq "tag1" }
   end
 end

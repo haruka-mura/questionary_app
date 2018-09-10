@@ -45,11 +45,12 @@ RSpec.describe TagsController, type: :controller do
     end
 
     context 'tagが1つも入力されない時' do
-      before { create(:tag) }
+      before { put :update, params: { tag_form: current_tag_params, id: question.id } }
+      let(:current_tag_params) { attributes_for :tag }
       let(:new_tags) { "" }
 
       it do
-        expect { subject }.to change { Tag.count }.from(3).to(0)
+        expect { subject }.to change { question.tags.count }.from(1).to(0)
         is_expected.to redirect_to question
       end
     end
