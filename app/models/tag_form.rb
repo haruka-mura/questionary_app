@@ -8,7 +8,7 @@ class TagForm
     new_tags = tags.map do |tag|
       Tag.find_or_create_by(name: tag)
     end
-    question.tags = temp
+    question.tags = new_tags
   end
 
   def show_tags
