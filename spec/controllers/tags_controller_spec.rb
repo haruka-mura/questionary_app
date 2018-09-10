@@ -23,34 +23,25 @@ RSpec.describe TagsController, type: :controller do
   describe '#update' do
     subject { put :update, params: { tag_form: tag_params, id: question.id } }
 
-    let(:question) { create :question }
-    let(:tag_params) { attributes_for :tag, name: new_tags }
-
-    context 'tagが1つ減った時' do
-      let(:new_tags) { "tag1 tag2" }
-
-      it do
-        expect { subject }.to change { Tag.count }.by(2)
-        is_expected.to redirect_to question
-      end
-    end
+    let!(:question) { create :question, tags: tags }
+    let(:tags) { create_list :tag, 2 }
+    let(:tag_params) { { name: new_tags } }
 
     context '新しいtagが1つ増えた時' do
-      let(:new_tags) { "tag1 tag2 tag3 tag4" }
+      let(:new_tags) { "new_tag" }
 
       it do
-        expect { subject }.to change { Tag.count }.by(4)
+        expect { subject }.to change { Tag.count }.from(2).to(3)
+        expect { subject }.not_to change { question.tags.count }
         is_expected.to redirect_to question
       end
     end
 
     context 'tagが1つも入力されない時' do
-      before { put :update, params: { tag_form: current_tag_params, id: question.id } }
-      let(:current_tag_params) { attributes_for :tag }
       let(:new_tags) { "" }
 
       it do
-        expect { subject }.to change { question.tags.count }.from(1).to(0)
+        expect { subject }.to change { question.tags.count }.by(-2)
         is_expected.to redirect_to question
       end
     end
