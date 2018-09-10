@@ -1,10 +1,9 @@
 class TagsController < ApplicationController
-  before_action :set_question_from_question_id, only: [:new, :create]
   before_action :set_question_from_id, only: [:edit, :update]
 
-  def show
-    @tag = Tag.find_by(id: params[:id])
-  end
+  # def show
+  #   @tag = Tag.find_by(id: params[:id])
+  # end
 
   def edit
     @tag_form = TagForm.new(question: @question)
@@ -21,10 +20,6 @@ class TagsController < ApplicationController
   end
 
   private
-
-    def set_question_from_question_id
-      @question = Question.find(params[:question_id])
-    end
 
     def set_question_from_id
       @question = Question.find(params[:id])
