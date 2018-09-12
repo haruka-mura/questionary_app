@@ -1,17 +1,10 @@
 class TagsController < ApplicationController
   before_action :set_question_from_id, only: [:edit, :update]
 
-<<<<<<< HEAD
-=======
-  def new
-    @tag_form = TagForm.new
-  end
-
   def show
     @tag = Tag.find_by(id: params[:id])
   end
 
->>>>>>> Add show action and template
   def edit
     @tag_form = TagForm.new(question: @question)
   end
