@@ -24,5 +24,7 @@
     = link_to 'タグを追加する', question_tags_edit_path
 
 %p
+  - if @question.user == current_user
+    = link_to '編集する', edit_question_path(@question)
   = link_to '回答する', new_question_answer_path(@question)
-  = link_to 'Back', questions_path
+  = link_to '戻る', questions_path
