@@ -1,6 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe TagsController, type: :controller do
+  describe '#show' do
+    subject { get :show, params: { id: tag_id } }
+
+    context 'パラメータが有効なとき' do
+      let(:tag) { create :tag }
+      let(:tag_id) { tag.id }
+
+      it do
+        is_expected.to have_http_status(:ok)
+        expect(assigns(:tag)).to eq tag
+      end
+    end
+
+    context 'パラメータが無効なとき' do
+      let(:tag_id) { 'aaa' }
+
+      it { expect { subject }.to raise_error ActiveRecord::RecordNotFound }
+    end
+  end
 
   describe '#edit' do
     subject { get :edit, params: { id: question_id } }

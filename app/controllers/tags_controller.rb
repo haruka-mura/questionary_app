@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_action :set_question_from_id, only: [:edit, :update]
 
   def show
-    @tag = Tag.find_by(id: params[:id])
+    @tag = Tag.find(params[:id])
   end
 
   def edit
