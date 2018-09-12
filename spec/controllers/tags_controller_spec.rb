@@ -28,8 +28,6 @@ RSpec.describe TagsController, type: :controller do
     let(:tag2) { create :tag, name: "tag2" }
     let(:tag_params) { { name: new_tags } }
 
-    # createして配列にしてポイする
-
     context '新しいtagが1つ増えた時' do
       let(:new_tags) { "tag1 tag2 new_tag" }
 
