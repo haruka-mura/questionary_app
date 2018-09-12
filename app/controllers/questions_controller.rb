@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answers = @question.answers
+    @tag_form = TagForm.new(question: @question)
   end
 
   def edit

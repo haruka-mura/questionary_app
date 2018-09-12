@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get    'login', to: 'sessions#new'
   post   'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
+  get 'questions/:id/tags/edit', to: 'tags#edit', as: :question_tags_edit
+  post 'questions/:id/tags/edit', to: 'tags#update'
 
   resources :users, only: [:index, :new, :show, :create]
 
