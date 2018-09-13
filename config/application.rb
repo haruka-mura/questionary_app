@@ -10,7 +10,13 @@ module QuestionaryApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    # 表示時のタイムゾーンをJSTに変更
+    config.time_zone = 'Tokyo'
+    # DB保存時のタイムゾーンをJSTに変更
+    config.active_record.default_timezone = :local
 
+    # ロケールを日本語に変更
+    config.i18n.default_locale = :ja
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

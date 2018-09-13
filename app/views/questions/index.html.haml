@@ -11,6 +11,7 @@
   %table
     %thead
       %tr
+        %th
         %th Subject
         %th Content
         %th State
@@ -19,6 +20,7 @@
     %tbody
       - @questions.each do |question|
         %tr
+          %td= l(question.created_at)
           %td= link_to question.subject, question
           %td= question.content
           %td= question.state
