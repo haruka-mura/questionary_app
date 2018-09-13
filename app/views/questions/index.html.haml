@@ -1,5 +1,7 @@
 %h1 Listing questions
 
+= link_to 'Log Out', logout_path
+
 = render 'search_form'
 
 - if @questions.empty?

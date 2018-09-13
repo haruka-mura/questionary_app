@@ -4,6 +4,10 @@ RSpec.describe TagsController, type: :controller do
   describe '#show' do
     subject { get :show, params: { id: tag_id } }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
+
     context 'パラメータが有効なとき' do
       let(:tag) { create :tag }
       let(:tag_id) { tag.id }
@@ -24,6 +28,9 @@ RSpec.describe TagsController, type: :controller do
   describe '#edit' do
     subject { get :edit, params: { id: question_id } }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
     let(:question) { create :question }
 
     context 'パラメータが有効な時' do
@@ -42,6 +49,9 @@ RSpec.describe TagsController, type: :controller do
   describe '#update' do
     subject { put :update, params: { tag_form: tag_params, id: question.id } }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
     let!(:question) { create :question, tags: [tag1, tag2] }
     let(:tag1) { create :tag, name: "tag1" }
     let(:tag2) { create :tag, name: "tag2" }

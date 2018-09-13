@@ -11,7 +11,16 @@ RSpec.describe UsersController, type: :controller do
     subject { get :show, params: { id: user.id } }
 
     let(:user) { create :user }
-    it { is_expected.to have_http_status(:ok) }
+
+    context 'when user is logged_in' do
+      before { session[:user_id] = user.id }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context 'when user is not logged_in' do
+      it { is_expected.to redirect_to root_path }
+    end
   end
 
   describe '#create' do
