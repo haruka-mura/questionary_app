@@ -4,17 +4,29 @@ RSpec.describe QuestionsController, type: :controller do
   describe '#index' do
     subject { get :index }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
+
     it { is_expected.to have_http_status(:ok) }
   end
 
   describe '#new' do
     subject { get :new }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
+
     it { is_expected.to have_http_status(:ok) }
   end
 
   describe '#show' do
     subject { get :show, params: { id: question_id } }
+
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
 
     context 'パラメータが有効なとき' do
       let(:question) { create :question }
@@ -65,13 +77,16 @@ RSpec.describe QuestionsController, type: :controller do
     context 'ログインしていないとき' do
       let(:question_params) { attributes_for :question }
 
-      it { is_expected.to render_template :new }
+      it { is_expected.to redirect_to root_path }
     end
   end
 
   describe '#edit' do
     subject { get :edit, params: { id: question_id } }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
     let(:question) { create :question }
 
     context 'パラメータが有効な時' do
@@ -90,6 +105,9 @@ RSpec.describe QuestionsController, type: :controller do
   describe '#update' do
     subject { put :update, params: { id: question.id, question: question_params } }
 
+    before { session[:user_id] = user.id }
+
+    let(:user) { create :user }
     let(:question) { create :question }
     let(:question_params) { attributes_for :question, subject: new_subject }
 

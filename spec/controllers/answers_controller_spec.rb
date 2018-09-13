@@ -3,9 +3,19 @@ require 'rails_helper'
 RSpec.describe Questions::AnswersController, type: :controller do
   describe "#new" do
     subject { get :new, params: { question_id: question.id } }
-
     let(:question) { create :question }
-    it { is_expected.to have_http_status(:ok) }
+
+    context 'when user is logged_in' do
+      before { session[:user_id] = user.id }
+
+      let(:user) { create :user }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context '' do
+      it { is_expected.to redirect_to root_path }
+    end
   end
 
   describe "#create" do
@@ -39,7 +49,7 @@ RSpec.describe Questions::AnswersController, type: :controller do
     context 'ログインしていない時' do
       let(:answer_params) { attributes_for :answer }
 
-      it { is_expected.to render_template :new }
+      it { is_expected.to redirect_to root_path }
     end
   end
 end
