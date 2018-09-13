@@ -23,6 +23,9 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params.merge(user: current_user))
 
     if @question.save
+      # デコレータ的なのを作ったほうがいいのかな
+      notifier = Slack::Notifier.new(Rails.application.config.slack_webhook_url)
+      notifier.ping(slack_message)
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
@@ -52,5 +55,9 @@ class QuestionsController < ApplicationController
 
     def question_search
       keyword_params.nil? ? Question.all : Question.search_with_keyword(keyword_params)
+    end
+
+    def slack_message
+      "新しい質問が投稿されました。URL：#{url_for([@question, only_path: false])}"
     end
 end
