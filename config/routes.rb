@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'questions/:id/tags/edit', to: 'tags#update'
   get 'tags/:id', to: 'tags#show', as: :tag
 
-  resources :users, only: [:index, :new, :show, :create]
+  resources :users, only: [:new, :show, :create]
 
   resources :questions, except: :destroy do
     resources :answers, only: [:new, :create]
