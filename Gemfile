@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+gem 'enum_help'
 
 
 group :development, :test do

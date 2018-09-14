@@ -23,7 +23,7 @@
           %td= l(question.created_at)
           %td= link_to question.subject, question
           %td= question.content
-          %td= question.state
+          %td= question.state_i18n
           %td
             - question.tags.each do |tag|
               %span= link_to tag.name, tag

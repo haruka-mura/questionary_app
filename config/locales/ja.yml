@@ -1,6 +1,23 @@
 ---
 ja:
+  enums:
+    question:
+      state:
+        accepting: 質問中
+        replied: 解決済
   activerecord:
+    attributes:
+      question:
+        subject: タイトル
+        content: 内容
+        state: 質問の状態
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+      answer:
+        comment: 回答内容
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

@@ -14,6 +14,6 @@
     = f.text_field :content
   .field
     = f.label :state
-    = f.select :state, Question.states.keys.map {|k| [k, k]}
+    = f.select :state, Question.states_i18n.keys.map {|k| [Question.states_i18n[k], k]}
   .actions
     = f.submit 'Save'
