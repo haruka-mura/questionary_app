@@ -20,7 +20,7 @@ class CreateQuestionAndSlackNotification
 
     def send_slack_notification
       notifier = Slack::Notifier.new(Rails.application.config.slack_webhook_url)
-      notifier.ping( slack_message)
+      notifier.ping(slack_message)
     end
 
     def slack_message
