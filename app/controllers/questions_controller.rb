@@ -21,11 +21,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params.merge(user: current_user))
+    create_question_and_slack_notification = CreateQuestionAndSlackNotification.new(@question)
 
-    if @question.save
-      # デコレータ的なのを作ったほうがいいのかな
-      notifier = Slack::Notifier.new(Rails.application.config.slack_webhook_url)
-      notifier.ping(slack_message)
+    if create_question_and_slack_notification.save
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
