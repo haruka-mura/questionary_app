@@ -54,7 +54,9 @@ RSpec.describe QuestionsController, type: :controller do
       context 'パラメータが有効なとき' do
         let(:question_params) { attributes_for :question }
 
-        before { session[:user_id] = user.id }
+        before do
+          session[:user_id] = user.id
+        end
 
         it do
           expect { subject }.to change { Question.count }.by(1)
