@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update]
 
-
   def index
     @questions = question_search
     @keyword = keyword_params
@@ -53,9 +52,5 @@ class QuestionsController < ApplicationController
 
     def question_search
       keyword_params.nil? ? Question.all : Question.search_with_keyword(keyword_params)
-    end
-
-    def slack_message
-      "新しい質問が投稿されました。URL：#{url_for([@question, only_path: false])}"
     end
 end
