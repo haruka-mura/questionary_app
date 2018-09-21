@@ -48,24 +48,32 @@ RSpec.describe QuestionsController, type: :controller do
   describe '#create' do
     subject { post :create, params: { question: question_params } }
 
+    before do
+      allow(Slack::Notifier).to receive(:new).and_return(slack_notification_instance)
+      allow(slack_notification_instance).to receive(:ping).and_return(true)
+    end
+
+    let(:slack_notification) { CreateQuestionAndSlackNotification.new(question: question_params) }
+    let(:slack_notification_instance) { instance_double Slack::Notifier }
     let(:user) { create :user }
 
     context 'ログインしているとき' do
       context 'パラメータが有効なとき' do
-        let(:question_params) { attributes_for :question }
-
         before { session[:user_id] = user.id }
 
+        let(:question_params) { attributes_for :question }
+
         it do
+          expect(slack_notification_instance).to receive(:ping)
           expect { subject }.to change { Question.count }.by(1)
           is_expected.to redirect_to Question.last
         end
       end
 
       context 'パラメータが無効なとき' do
-        let(:question_params) { attributes_for :question, subject: "" }
-
         before { session[:user_id] = user.id }
+
+        let(:question_params) { attributes_for :question, subject: "" }
 
         it do
           expect { subject }.not_to change { Question.count }

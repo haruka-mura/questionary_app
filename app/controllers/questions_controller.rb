@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update]
 
-
   def index
     @questions = question_search
     @keyword = keyword_params
@@ -21,8 +20,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params.merge(user: current_user))
+    create_question_and_slack_notification = CreateQuestionAndSlackNotification.new(@question)
 
-    if @question.save
+    if create_question_and_slack_notification.save
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
