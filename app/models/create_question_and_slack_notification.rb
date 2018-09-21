@@ -6,7 +6,7 @@ class CreateQuestionAndSlackNotification
   attr_reader :question
   after_save :send_slack_notification
 
-  WEBHOOK_URL = Rails.application.config.slack_webhook_url
+  WEBHOOK_URL = ENV['SLACK_WEBHOOK_URL']
 
   def initialize(question)
     @question = question
