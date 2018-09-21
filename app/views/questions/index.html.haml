@@ -1,6 +1,6 @@
-%h1 質問一覧
+%h1.title 質問一覧
 
-= link_to 'ログアウト', logout_path
+%span= link_to 'ログアウト', logout_path
 
 = render 'search_form'
 
@@ -15,30 +15,10 @@
       =link_to question do
         %h3.question-title= question.subject
         %p.question-content= question.content
+        %p.question-created= l(question.created_at)
+        %p.question-state= question.state_text
       %p.question-tags
         - question.tags.each do |tag|
           %span= link_to "##{tag.name}", tag
-
-
-  -# %table
-  -#   %thead
-  -#     %tr
-  -#       %th
-  -#       %th Subject
-  -#       %th Content
-  -#       %th State
-  -#       %th Tags
-  -#
-  -#   %tbody
-  -#     - @questions.each do |question|
-  -#       %tr
-  -#         %td= l(question.created_at)
-  -#         %td= link_to question.subject, question
-  -#         %td= question.content
-  -#         %td= question.state
-  -#         %td
-  -#           - question.tags.each do |tag|
-  -#             %span= link_to tag.name, tag
-  -# %br
 
 = link_to '質問する', new_question_path

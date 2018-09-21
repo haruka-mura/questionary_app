@@ -1,4 +1,4 @@
 = form_tag("/questions", method: "get") do
   = label_tag(:keyword, "キーワード")
   = text_field_tag(:keyword, "#{@keyword}")
-  = submit_tag("探す")
+  = submit_tag("探す", class: "btn btn-default")

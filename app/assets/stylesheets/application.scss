@@ -1,3 +1,20 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "reset";
 @import "bootstrap";
+@import "questions";
+
+body {
+  margin: 50px;
+}
+
+a {
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.title {
+  display: inline-block;
+}
