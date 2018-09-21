@@ -8,25 +8,37 @@
   %p= "--該当する質問がありません--"
 - else
   %p= "--#{@questions.count}件の質問があります--"
-  %table
-    %thead
-      %tr
-        %th
-        %th
-        %th
-        %th
-        %th
 
-    %tbody
-      - @questions.each do |question|
-        %tr
-          %td= l(question.created_at)
-          %td= link_to question.subject, question
-          %td= question.content
-          %td= question.state_text
-          %td
-            - question.tags.each do |tag|
-              %span= link_to tag.name, tag
-  %br
+.questions
+  - @questions.each do |question|
+    .question-card
+      =link_to question do
+        %h3.question-title= question.subject
+        %p.question-content= question.content
+      %p.question-tags
+        - question.tags.each do |tag|
+          %span= link_to "##{tag.name}", tag
+
+
+  -# %table
+  -#   %thead
+  -#     %tr
+  -#       %th
+  -#       %th Subject
+  -#       %th Content
+  -#       %th State
+  -#       %th Tags
+  -#
+  -#   %tbody
+  -#     - @questions.each do |question|
+  -#       %tr
+  -#         %td= l(question.created_at)
+  -#         %td= link_to question.subject, question
+  -#         %td= question.content
+  -#         %td= question.state
+  -#         %td
+  -#           - question.tags.each do |tag|
+  -#             %span= link_to tag.name, tag
+  -# %br
 
 = link_to '質問する', new_question_path

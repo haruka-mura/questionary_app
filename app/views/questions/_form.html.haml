@@ -16,4 +16,4 @@
     = f.label :state
     = f.select :state, Question.states.keys.map {|key, value| [I18n.t("activerecord.enum.question.state.#{key}"), value]}
   .actions
-    = f.submit '質問する'
+    = f.submit '質問する', class: "btn btn-default"
