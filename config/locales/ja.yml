@@ -1,6 +1,27 @@
 ---
 ja:
+  activemodel:
+    attributes:
+      tag_form:
+        name: タグ
   activerecord:
+    attributes:
+      question:
+        subject: タイトル
+        content: 内容
+        state: "質問の状態"
+      answer:
+        comment: 内容
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認用
+    enum:
+      question:
+        state:
+          accepting: "質問中"
+          replied: "解決済"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

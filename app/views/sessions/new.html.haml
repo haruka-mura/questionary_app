@@ -1,14 +1,14 @@
-%h1 Login
+%h1 ログイン
 
 = form_for(:session, url: login_path) do |f|
   .field
-    = f.label :email
+    = f.label :email, "メールアドレス"
     = f.email_field :email
   .field
-    = f.label :password
+    = f.label :password, "パスワード"
     = f.password_field :password
   .actions
-    = f.submit 'Login'
+    = f.submit 'ログインする'
 
-= link_to 'Sign Up', new_user_path
-= link_to 'Back', root_path
+= link_to '新規ユーザー登録', new_user_path
+= link_to '戻る', root_path

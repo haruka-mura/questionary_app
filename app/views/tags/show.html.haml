@@ -7,10 +7,10 @@
   %table
     %thead
       %tr
-        %th Subject
-        %th Content
-        %th State
-        %th Tags
+        %th
+        %th
+        %th
+        %th
 
     %tbody
       - @tag.questions.each do |question|
@@ -24,4 +24,4 @@
   %br
 
 = link_to '戻る', questions_path
-= link_to 'New question', new_question_path
+= link_to '質問を作成する', new_question_path

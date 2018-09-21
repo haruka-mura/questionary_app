@@ -1,14 +1,11 @@
 %p#notice= notice
 
 %p
-  %b Subject:
-  = @question.subject
+  %b= @question.subject
 %p
-  %b Content:
-  = @question.content
+  %b= @question.content
 %p
-  %b State:
-  = @question.state
+  %b= @question.state
 
 - @answers.each do |answer|
   %p
