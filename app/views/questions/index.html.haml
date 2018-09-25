@@ -2,6 +2,8 @@
 
 %span= link_to 'ログアウト', logout_path
 
+%h2 最新の質問
+
 = render 'search_form'
 
 - if @questions.empty?
@@ -17,8 +19,9 @@
         %p.question-content= question.content
         %p.question-created= l(question.created_at)
         %p.question-state= question.state_text
-      %p.question-tags
-        - question.tags.each do |tag|
-          %span= link_to "##{tag.name}", tag
+      - if question.tags.exists?
+        %p.question-tags
+          - question.tags.each do |tag|
+            %span= link_to "##{tag.name}", tag
 
 = link_to '質問する', new_question_path

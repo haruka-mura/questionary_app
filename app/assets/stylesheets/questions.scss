@@ -1,11 +1,44 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .questions {
+  a {
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
   .question-card {
     border: 1px solid rgb(227, 209, 165);
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 10px;
+
+    > a {
+      display: block;
+      padding: 5px;
+    }
+
+    > a:hover {
+      border-radius: 5px;
+      background-color: rgb(242, 231, 202);
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  .question-tags {
+    padding: 5px;
+    margin-bottom: 0;
+
+    a:hover {
+      color: rgb(222, 191, 116);
+    }
   }
 }
