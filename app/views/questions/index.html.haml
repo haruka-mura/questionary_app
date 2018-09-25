@@ -1,8 +1,8 @@
 .header
   %h1.title 質問一覧
-  %span= link_to '質問する', new_question_path
+  %span.new_question= link_to '質問する', new_question_path
   \|
-  %span= link_to 'ログアウト', logout_path
+  %span.logout= link_to 'ログアウト', logout_path
 
 %h2 最新の質問
 = render 'search_form'
