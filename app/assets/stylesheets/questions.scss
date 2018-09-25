@@ -1,6 +1,9 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.search-form {
+  margin: 10px;
+}
 
 .questions {
   a {
@@ -10,6 +13,14 @@
       text-decoration: none;
       color: black;
     }
+  }
+
+  > span {
+    display: block;
+    background-color: rgb(242, 231, 202);
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding: 5px;
   }
 
   .question-card {

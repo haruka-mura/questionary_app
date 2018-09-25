@@ -7,6 +7,18 @@ body {
   margin: 50px;
 }
 
+.header {
+  span {
+    font-size: 20px;
+  }
+}
 .title {
   display: inline-block;
+  margin-bottom: 30px;
+  margin-right: 50px;
+}
+
+h2 {
+  border-bottom: double 5px rgb(227, 209, 165);
+  margin-bottom: 20px;
 }
