@@ -17,11 +17,12 @@
       =link_to question do
         %h3.question-title= question.subject
         %p.question-content= question.content
-        %p.question-created= l(question.created_at)
-        %p.question-state= question.state_text
+        %span.question-created= l(question.created_at)
+        %span.question-state= question.state_text
       - if question.tags.exists?
         %p.question-tags
           - question.tags.each do |tag|
-            %span= link_to "##{tag.name}", tag
+            %span
+              = link_to "##{tag.name}", tag
 
 = link_to '質問する', new_question_path
