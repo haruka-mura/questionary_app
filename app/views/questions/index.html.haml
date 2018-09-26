@@ -1,32 +1,27 @@
-%h1 質問一覧
+.header
+  %h1.title 質問一覧
+  %span.new_question= link_to '質問する', new_question_path
+  \|
+  %span.logout= link_to 'ログアウト', logout_path
 
-= link_to 'ログアウト', logout_path
-
+%h2 最新の質問
 = render 'search_form'
 
-- if @questions.empty?
-  %p= "--該当する質問がありません--"
-- else
-  %p= "--#{@questions.count}件の質問があります--"
-  %table
-    %thead
-      %tr
-        %th
-        %th
-        %th
-        %th
-        %th
+.questions
+  - if @questions.empty?
+    %span= "--該当する質問がありません--"
+  - else
+    %span= "--#{@questions.count}件の質問があります--"
 
-    %tbody
-      - @questions.each do |question|
-        %tr
-          %td= l(question.created_at)
-          %td= link_to question.subject, question
-          %td= question.content
-          %td= question.state_text
-          %td
-            - question.tags.each do |tag|
-              %span= link_to tag.name, tag
-  %br
-
-= link_to '質問する', new_question_path
+  - @questions.each do |question|
+    .question-card
+      =link_to question do
+        %h3.question-title= question.subject
+        %p.question-content= question.content
+        %span.question-created= l(question.created_at)
+        %span.question-state= question.state_text
+      - if question.tags.exists?
+        %p.question-tags
+          - question.tags.each do |tag|
+            %span
+              = link_to "##{tag.name}", tag

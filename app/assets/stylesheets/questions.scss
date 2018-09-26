@@ -1,3 +1,69 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.new_question {
+  a:hover {
+    background-color: #f2e7ca;
+    border-radius: 3px;
+  }
+}
+
+.logout {
+  a:hover {
+    background-color: #dad9d5;
+    border-radius: 3px;
+  }
+}
+
+.search-form {
+  margin: 10px;
+}
+
+.questions {
+  > span {
+    display: block;
+    background-color: #f2e7ca;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding: 5px;
+  }
+  .question-card {
+    border: 1px solid #e3d1a5;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    > a {
+      display: block;
+      padding: 5px;
+    }
+    > a:hover {
+      border-radius: 5px;
+      background-color: #f2e7ca;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+    .question-state {
+      background-color: #f9efd7;
+      border-radius: 3px;
+      padding:5px;
+      margin: 0 5px;
+    }
+  }
+  .question-tags {
+    padding: 5px;
+    margin-bottom: 0;
+
+    a:hover {
+      color: #debf74;
+    }
+  }
+}
