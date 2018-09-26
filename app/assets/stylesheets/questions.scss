@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 a {
   color: black;
-
   &:hover {
     text-decoration: none;
     color: black;
@@ -12,14 +11,14 @@ a {
 
 .new_question {
   a:hover {
-    background-color: rgb(242, 231, 202);
+    background-color: #f2e7ca;
     border-radius: 3px;
   }
 }
 
 .logout {
   a:hover {
-    background-color: rgb(218, 217, 213);
+    background-color: #dad9d5;
     border-radius: 3px;
   }
 }
@@ -29,49 +28,42 @@ a {
 }
 
 .questions {
-
   > span {
     display: block;
-    background-color: rgb(242, 231, 202);
+    background-color: #f2e7ca;
     margin-bottom: 10px;
     border-radius: 3px;
     padding: 5px;
   }
-
   .question-card {
-    border: 1px solid rgb(227, 209, 165);
+    border: 1px solid #e3d1a5;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 10px;
-
     > a {
       display: block;
       padding: 5px;
     }
-
     > a:hover {
       border-radius: 5px;
-      background-color: rgb(242, 231, 202);
+      background-color: #f2e7ca;
     }
-
     p {
       margin-bottom: 5px;
     }
-
     .question-state {
-      background-color: rgb(249, 239, 215);
+      background-color: #f9efd7;
       border-radius: 3px;
       padding:5px;
       margin: 0 5px;
     }
   }
-
   .question-tags {
     padding: 5px;
     margin-bottom: 0;
 
     a:hover {
-      color: rgb(222, 191, 116);
+      color: #debf74;
     }
   }
 }
